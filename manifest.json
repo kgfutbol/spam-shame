@@ -1,0 +1,22 @@
+{
+  "name" : "Spam Shame",
+  "description" : "in the works",
+  "version" : "0.1.0",
+  "manifest_version": 2,
+  "icons": {
+    "16": "temp.jpg",
+    "32": "temp.jpg",
+    "48": "temp.jpg",
+    "128": "temp.jpg"
+  },
+  "background" : {
+    "scripts" : ["./background.js"]
+  },
+  "options_page": "./options.html",
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs"
+  ]
+}
