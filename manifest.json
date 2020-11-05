@@ -22,7 +22,9 @@
     "default_popup": "popup.html",
     "default_title": "Spam Shame"
   },
-  "options_page": "./options.html",
+  "options_ui": {
+    "page": "./options.html"
+  },
   "permissions": [
     "activeTab",
     "tabs",
