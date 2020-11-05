@@ -28,5 +28,5 @@
     "tabs",
     "<all_urls>"
   ],
-  "persistent": false
+  "persistent": "false"
 }
