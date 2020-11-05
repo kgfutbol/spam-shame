@@ -10,13 +10,24 @@
     "128": "temp.jpg"
   },
   "background" : {
+
     "scripts" : ["./background.js"]
   },
-  "options_page": "./options.html",
+  "content_scripts": [
+    {
+      "matches" : ["<all_urls>"],
+      "js" : ["content.js"]
+    }
+  ],
   "browser_action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "Spam Shame"
   },
+  "options_page": "./options.html",
   "permissions": [
-    "tabs"
-  ]
+    "activeTab",
+    "tabs",
+    "<all_urls>"
+  ],
+  "persistent": false
 }
