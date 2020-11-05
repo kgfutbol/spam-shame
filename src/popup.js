@@ -15,6 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function onclickOptions ()
     {
-
+        chrome.tabs.create({url: '../options.html'})
     }
 })
