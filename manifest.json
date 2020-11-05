@@ -10,7 +10,6 @@
     "128": "temp.jpg"
   },
   "background" : {
-
     "scripts" : ["./src/background.js"]
   },
   "content_scripts": [

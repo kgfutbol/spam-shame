@@ -1,1 +1,1 @@
-console.log("new location");
+alert("Shame!");
