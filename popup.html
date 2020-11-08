@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Spam Shame</title>
     <script src="./src/popup.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="./css/popup.css">
+    <link rel="stylesheet" href="./css/popup.css" />
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-</head>
-<body>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <h1>Spam Shame</h1>
 
     <div class="row">
-        <div class="col-md-12">
-            <button id="new-dot-btn">New Dot Email</button>
-        </div>
+      <div class="col-md-12">
+        <p>Current dot email: <span id="dot-email"></span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button id="new-dot-btn">New Dot Email</button>
+      </div>
     </div>
 
     <div id="accounts-div">
-        <table id="accounts-table">
-            <thead>
-                <tr>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Website
-                    </th>
-                </tr>
-            </thead>
-            <tbody id="tbody">
-            </tbody>
-        </table>
+      <table id="accounts-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Website</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
     </div>
 
-    <hr>
+    <hr />
     <div class="row">
-        <div class="col-md-12">
-            <button id="options-btn">Options</button>
-        </div>
+      <div class="col-md-12">
+        <button id="options-btn">Options</button>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
