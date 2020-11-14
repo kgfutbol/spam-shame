@@ -40,6 +40,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 payload: resp
             });
         });
+    } else if (request.message === 'get all') {
+        let getAllRequest = get_all_data();
+        console.log(getAllRequest);
+        getAllRequest.then(resp => {
+            chrome.runtime.sendMessage({
+                message: 'get all success',
+                payload: resp
+            });
+        });
     }
 
 });
@@ -47,43 +56,48 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 let exampleData = [
     {
         "email" : "k.evingermain@gmail.com",
-        "account" : "facebook"
+        "website" : "facebook"
     },
     {
         "email" : "k.e.vingermain@gmail.com",
-        "account" : "twitter"
+        "website" : "twitter"
     },
     {
         "email" : "k.ev.ingermain@gmail.com",
-        "account" : "amazon"
+        "website" : "amazon"
     }
-]
+];
 
 let db = null;
 
 function create_database() {
-    const request = window.indexedDB.open('UserDatabase');
+    return new Promise((resolve, reject) => {
+        const request = window.indexedDB.open('UserDatabase');
 
-    request.onerror = function(event) {
-        console.log("failed to open DB");
-    }
-
-    request.onupgradeneeded = function(event) {
-        db = event.target.result;
-
-        let emailStorage = db.createObjectStore('user', {
-            keyPath: 'email'
-        });
-        emailStorage.transaction.oncomplete = function(event) {
-            console.log("DB created")
+        request.onerror = function(event) {
+            console.log("failed to open DB");
+            resolve(false);
         }
-    }
 
-    request.onsuccess = function(event) {
-        db = event.target.result;
+        request.onupgradeneeded = function(event) {
+            db = event.target.result;
 
-        console.log("DB Open")
-    }
+            let emailStorage = db.createObjectStore('user', {
+                keyPath: 'email'
+            });
+            emailStorage.transaction.oncomplete = function(event) {
+                console.log("DB created")
+            }
+        }
+
+        request.onsuccess = function(event) {
+            db = event.target.result;
+
+            console.log("DB Open")
+            resolve(true);
+        }
+    });
+
 }
 
 function delete_database() {
@@ -132,7 +146,7 @@ function insert_data (data)
     }
 }
 
-function get_data(email) {
+function get_all_data() {
     if (db) {
         const get_transaction = db.transaction("user", "readonly");
         const objectStore = get_transaction.objectStore("user");
@@ -143,18 +157,40 @@ function get_data(email) {
             }
 
             get_transaction.onsuccess = function(event) {
-                console.log("Successfully Retrieved Data")
+                console.log("Get All Transaction Complete")
+            }
+
+            let request = objectStore.getAll();
+
+
+            request.onsuccess = function(event) {
+                console.log("Successfully Retrieved All data");
                 resolve(event.target.result);
+            }
+        });
+    }
+}
+
+function get_data(email) {
+    if (db) {
+        const get_transaction = db.transaction("user", "readonly");
+        const objectStore = get_transaction.objectStore("user");
+
+        return new Promise((resolve, reject) => {
+            get_transaction.onerror = function(event) {
+                console.log("Get All Transaction Complete");
+            }
+
+            get_transaction.onsuccess = function(event) {
+                console.log("Get Transaction Complete")
+
             }
 
             let request = objectStore.get(email);
 
-            request.onerror = function(event) {
-                console.log("Failed to get data");
-            }
-
             request.onsuccess = function(event) {
                 console.log("Successfully Retrieved data");
+                resolve(event.target.result);
             }
         });
     }
@@ -203,4 +239,6 @@ function delete_data (email) {
     }
 }
 
-create_database();
+create_database().then( (DBOpen) => {
+    insert_data(exampleData);
+});

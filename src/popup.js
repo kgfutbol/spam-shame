@@ -1,3 +1,27 @@
+chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  if (req.message === 'insert success') {
+    if (req.payload) {
+      //Code for insert return response from DB
+
+    }
+  } else if (req.message === 'get success') {
+    if (req.payload) {
+      //Code for get return from DB
+
+    }
+  } else if (req.message === 'update success') {
+    if (req.payload) {
+      //Code for update return from DB
+
+    }
+  } else if (req.message === 'delete success') {
+    if (req.payload) {
+      //Code for delete return from DB
+
+    }
+  }
+});
+
 //data parameter should be in the form of an array of objects
 function insert_data(data) {
   chrome.runtime.sendMessage({
