@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document
         .getElementById("linked-btn")
         .addEventListener("click", onClickLinked, false);
-      let accountList = document.getElementById("tbody");
 
       let currentDotEmail = res.email;
       setNewDotEmail(currentDotEmail);
@@ -91,23 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
       function onClickLinked() {
         chrome.tabs.create({ url: "../linkedEmails.html" });
       }
-
-      function constructAccounts(accounts) {
-        for (var account in accounts) {
-          let row = accountList.insertRow();
-          let email = row.insertCell(0);
-          let website = row.insertCell(1);
-
-          email.innerHTML = account;
-          website.innerHTML = accounts[account];
-        }
-      }
-
-      const exampleAccounts = {
-        "sdybka@uncc.edu": "Facebook.com",
-        "sdybk.a@uncc.edu": "gmail.com",
-      };
-      constructAccounts(exampleAccounts);
     } else {
       document.getElementById("content").innerHTML = `
         <div class="row">
