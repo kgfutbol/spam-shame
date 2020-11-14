@@ -1,29 +1,29 @@
 //data parameter should be in the form of an array of objects
 function insert_data(data) {
   chrome.runtime.sendMessage({
-    message: 'insert',
-    payload: data
+    message: "insert",
+    payload: data,
   });
 }
 
 function get_data(data) {
   chrome.runtime.sendMessage({
-    message: 'get',
-    payload: data
+    message: "get",
+    payload: data,
   });
 }
 
 function update_data(data) {
   chrome.runtime.sendMessage({
-    message: 'update',
-    payload: data
+    message: "update",
+    payload: data,
   });
 }
 
 function delete_data(data) {
   chrome.runtime.sendMessage({
-    message: 'delete',
-    payload: data
+    message: "delete",
+    payload: data,
   });
 }
 
@@ -37,6 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
       document
         .getElementById("options-btn")
         .addEventListener("click", onclickOptions, false);
+      document
+        .getElementById("linked-btn")
+        .addEventListener("click", onClickLinked, false);
       let accountList = document.getElementById("tbody");
 
       let currentDotEmail = res.email;
@@ -83,6 +86,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       function onclickOptions() {
         chrome.tabs.create({ url: "../options.html" });
+      }
+
+      function onClickLinked() {
+        chrome.tabs.create({ url: "../linkedEmails.html" });
       }
 
       function constructAccounts(accounts) {
