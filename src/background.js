@@ -1,4 +1,10 @@
 console.log("Background Execution");
+chrome.runtime.onInstalled.addListener(function (details) {
+    chrome.storage.local.get(["email"], (res) => {
+        if (!res.email) chrome.browserAction.setPopup({ popup: '../initial.html' });
+    });
+});
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === 'insert')
     {
