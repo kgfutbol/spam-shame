@@ -248,3 +248,19 @@ function delete_data (email) {
 create_database().then( (DBOpen) => {
     insert_data(exampleData);
 });
+
+
+//adds context menu item
+chrome.contextMenus.create({
+    title: "Insert Dot Email",
+    contexts: ["editable"],
+    onclick: insertDotEmail(),
+});
+
+
+    function insertDotEmail() {
+        chrome.storage.local.get(["email"], function(res){
+        //let currentEmail = "hello";
+        document.getElementById("EmailAddr").innerText = res.email;
+    });
+    }
