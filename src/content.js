@@ -1,3 +1,6 @@
-chrome.runtime.onMessage.addListener(function(request) {
-    alert(request)
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message === 'insert email')
+    {
+        document.getElementById("EmailAddr").innerText = request.payload;
+    }
 });

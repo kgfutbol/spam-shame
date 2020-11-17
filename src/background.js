@@ -258,9 +258,12 @@ chrome.contextMenus.create({
 });
 
 
-    function insertDotEmail() {
-        chrome.storage.local.get(["email"], function(res){
+function insertDotEmail() {
+    chrome.storage.local.get(["email"], function(res){
         //let currentEmail = "hello";
-        document.getElementById("EmailAddr").innerText = res.email;
+        chrome.runtime.sendMessage({
+            message: 'insert email',
+            payload: res
+        });
     });
-    }
+}
