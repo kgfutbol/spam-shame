@@ -1,0 +1,5 @@
+.mdl-card > .mdl-card__title {
+    color: #000;
+    height: 176px;
+    background: url('../images/background.jpg') center / cover;
+}

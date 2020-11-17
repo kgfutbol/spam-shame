@@ -1,29 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Spam Shame</title>
-    <script src="./src/initial.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-          crossorigin="anonymous" />
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-            crossorigin="anonymous"></script>
+    <script type="module" src="./src/initial.js"></script>
+    <link rel="stylesheet" href="./css/initial.css">
+    <link rel="stylesheet" href="./css/dialog-polyfill.css">
+    <!-- material lite import -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
 <body>
-    <div class="row">
-        <div class="col-md-12">
-            <p>Please enter your email</p>
-            <form id="emailForm">
-                <label for="email">GMail:</label><br />
-                <input type="email" id="email" name="email" />
-                <input type="submit" value="Submit" />
-            </form>
-        </div>
+<div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Welcome</h2>
     </div>
-    </body>
+    <div class="mdl-card__supporting-text">Please enter the email you would like to use with Spam Shame. Spam Shame only
+        supports standard google emails.
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <form id="emailForm">
+            <div class="mdl-textfield mdl-js-textfield">
+                <input type="email" class="mdl-textfield__input" id="email" name="email"/>
+                <label class="mdl-textfield__label" for="email">Enter GMail</label>
+            </div>
+            <br>
+            <input type="submit" class="mdl-button mdl-js-button mdl-button--raised" value="Submit"/>
+        </form>
+    </div>
+</div>
+<dialog id="successDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Email Accepted!</h4>
+    <div class="mdl-dialog__content">
+        Thank you for using Spam Shame. You can now click on the Spam Shame icon to see extension settings or just continue browsing. Spam Shame will pop up the next time you are creating a new account with a website.
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button close">Get Started</button>
+    </div>
+</dialog>
+<dialog id="failDialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Email not compatible!</h4>
+    <div class="mdl-dialog__content">
+        Spam Shame requires the use of a standard Google email (@gmail.com or @googlemail.com). Organization bought email address, even if using gmail, do not work.
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button close">Okay</button>
+    </div>
+</dialog>
+</body>
 </html>
