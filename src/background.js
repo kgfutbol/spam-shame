@@ -251,19 +251,18 @@ create_database().then( (DBOpen) => {
 
 
 //adds context menu item
-chrome.contextMenus.create({
-    title: "Insert Dot Email",
-    contexts: ["editable"],
-    onclick: insertDotEmail(),
-});
-
-
-function insertDotEmail() {
-    chrome.storage.local.get(["email"], function(res){
-        //let currentEmail = "hello";
-        chrome.runtime.sendMessage({
-            message: 'insert email',
-            payload: res
-        });
+var contextMenuItem = {
+    "id": "InsertEmail",
+    "title": "InsertEmail",
+    "contexts": ["editable"]
+};
+//context menu action and pulls from local storage
+chrome.contextMenus.create(contextMenuItem)
+chrome.contextMenus.onClicked.addListener(function(callback) {
+    chrome.storage.local.get(["email"], (res) => {
+        prompt("Control C this to copy to clipboard and hit enter to close the prompt", res.email);
     });
-}
+    });
+
+
+
