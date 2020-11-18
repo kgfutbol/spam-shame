@@ -4,20 +4,36 @@
     <meta charset="UTF-8" />
     <title>Spam Shame</title>
     <script src="./src/linked.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./css/linked.css" />
+    <!-- material lite import -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
+    />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
-  <body>
-    <h1>Spam Shame</h1>
-    <h2>Linked "Dot Emails"</h2>
-    <div id="accounts-div">
-      <table id="accounts-table">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Website</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </div>
+  <body class="mdl-color--grey-100">
+    <main class="mdl-layout__content">
+      <h2>Spam Shame</h2>
+      <h3>Linked "Dot Emails"</h3>
+      <div id="accounts-div">
+        <table
+          id="accounts-table"
+          class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+        >
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Email</th>
+              <th class="mdl-data-table__cell--non-numeric">Website</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </main>
   </body>
 </html>
