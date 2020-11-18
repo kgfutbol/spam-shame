@@ -249,3 +249,17 @@ create_database().then( (DBOpen) => {
     insert_data(exampleData);
 });
 
+//context menu item attributes
+var contextMenuItem = {
+    "id": "InsertEmail",
+    "title": "InsertEmail",
+    "contexts": ["editable"]
+};
+//Creates context menu
+chrome.contextMenus.create(contextMenuItem)
+//Once clicked pulls from storage and opens in prompt
+chrome.contextMenus.onClicked.addListener(function(callback) {
+    chrome.storage.local.get(["email"], (res) => {
+        prompt("Control C this to copy to clipboard and hit enter to close the prompt", res.email);
+    });
+});
