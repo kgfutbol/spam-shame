@@ -1,5 +1,4 @@
 function replaceSelectedText(elem, email) {
-    console.log(elem);
     elem.value = email;
 }
 
