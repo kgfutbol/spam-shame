@@ -5,44 +5,39 @@
     <title>Spam Shame</title>
     <script src="./src/popup.js" charset="utf-8"></script>
     <link rel="stylesheet" href="./css/popup.css" />
-    <!-- Latest compiled and minified CSS -->
+    <!-- material lite import -->
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-      crossorigin="anonymous"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <!-- Latest compiled and minified JavaScript -->
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-      crossorigin="anonymous"
-    ></script>
+    <link
+      rel="stylesheet"
+      href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
+    />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
   <body>
-    <h1>Spam Shame</h1>
-
-    <div id="content">
-      <div class="row">
-        <div class="col-md-12">
-          <p>Current dot email: <span id="dot-email"></span></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <button id="new-dot-btn">New Dot Email</button>
-        </div>
+    <div class="mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h3>Spam Shame</h3>
       </div>
 
-      <hr />
-      <div class="row">
-        <div class="col-md-12">
-          <button id="options-btn">Options</button>
+      <div class="mdl-card__supporting-text">
+        <div>
+          <button
+            id="btn-linked"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+          >
+            Linked "Dot Emails"
+          </button>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <button id="linked-btn">Linked "Dot Emails"</button>
+        <div>
+          <button
+            id="btn-options"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+          >
+            Options
+          </button>
         </div>
       </div>
     </div>
