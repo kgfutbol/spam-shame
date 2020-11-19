@@ -7,6 +7,10 @@ function get_all_data(data) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  data = [
+    { email: "test@gmail.com", website: "facebook.com" },
+    { email: "t.est@gmail.com", website: "google.com" },
+  ];
 
   let accountList = document.getElementById("tbody");
 
@@ -23,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
       website.innerHTML = account.website;
     }
   }
+
+  //constructAccounts(data);
 
   chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     console.log(sender);
