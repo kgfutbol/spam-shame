@@ -4,9 +4,70 @@
     <meta charset="UTF-8">
     <title>Spam Shame</title>
     <script src="./src/options.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./css/options.css" />
+    <!-- material lite import -->
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+            rel="stylesheet"
+            href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
+    />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
-<body>
-<h1>Spam Shame</h1>
-<h2>Options</h2>
+
+
+
+<body class="mdl-color--grey-100">
+<main class="mdl-layout__content">
+    <div class="about-section">
+        <h1>Spam Shame</h1>
+        <p>Spam Shame is a Chrome extension that helps protect yourself and other users from websites that sell your
+        personal information resulting in you receiving spam emails.</p>
+    </div>
+
+
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2>How it works</h2>
+                    <p>Gmail emails come with a unique feature that is the center of our application.
+                        Periods in the middle of the email are ignored when sending to the user.
+                        For example, the following emails all send to the same inbox.</p>
+                    <p>example@gmail.com<br/>
+                    e.xample@gmail.com<br/>
+                    e.x.a.m.p.l.e@gmail.com</p>
+                    <p>Using this we can detect if you are receiving spam emails from a source that should
+                    not have your email.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2>Our Team</h2>
+                    <p>We are a group of 5 computer science students at UNC Charlotte currently enrolled in the
+                    4155 Capstone course in the Fall 2020 semester. </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2>Source</h2>
+
+                    <p>All source code can be found on our Github linked below.</p>
+                    <a href="https://github.com/kgfutbol/spam-shame">Spam Shame</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 </body>
 </html>
