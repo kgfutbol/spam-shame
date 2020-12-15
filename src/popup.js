@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("btn-linked")
     .addEventListener("click", onClickLinked, false);
+  document
+    .getElementById("btn-filter")
+    .addEventListener("click", onClickFilter, false);
 
   function onclickOptions() {
     chrome.tabs.create({ url: "../options.html" });
@@ -12,5 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function onClickLinked() {
     chrome.tabs.create({ url: "../linkedEmails.html" });
+  }
+
+  function onClickFilter() {
+    chrome.tabs.create({ url: "../filter.html" });
   }
 });
