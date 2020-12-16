@@ -6,14 +6,12 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
   if (req.message === "insert email") {
     if (req.payload) {
       replaceSelectedText(document.activeElement, req.payload);
-      let currentURL = window.location.hostname;
-      let splitURL = currentURL.split(".");
-      let location = splitURL.length - 2;
+      let currentURL = new URL(window.location.href).hostname;
 
       let profileInfo = [
         {
           email: req.payload,
-          website: splitURL[location],
+          website: currentURL,
         },
       ];
 
