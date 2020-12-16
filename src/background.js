@@ -328,15 +328,20 @@ function reportEmail() {
                 );
 
                 if (confirmReport) {
-                  postReport(account.website).then((r) => {
-                    console.log(r);
-                  });
+                  postReport(account.website);
                 }
 
                 // Check if user wants to filter our emails
                 const confirmFilter = window.confirm(
                   `Do you want to filter all emails addressed to ${account.email} out of your inbox?`
                 );
+
+                if (confirmFilter) {
+                  // Executes code on page (hijacks user session)
+                  chrome.tabs.executeScript(tabs[0].id, {
+                    file: "src/filter.js",
+                  });
+                }
               }
             }
           });
