@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function onClickFilterEmails() {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       // Executes code on page (hijacks user session)
+      // TODO: Navigate to correct gmail path based on spam report process
       chrome.tabs.executeScript(tabs[0].id, { file: "src/filter.js" });
     });
   }
