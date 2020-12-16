@@ -240,7 +240,7 @@ create_database().then((DBOpen) => {
 //Creates context menu
 chrome.contextMenus.create({
   id: "InsertEmail",
-  title: "InsertEmail",
+  title: "Insert Email",
   contexts: ["editable"],
   onclick: contextMenuClick,
 });
@@ -303,47 +303,43 @@ chrome.contextMenus.create({
   onclick: reportEmail,
 });
 
-function reportEmail(){
+function reportEmail() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(
+      tabs[0].id,
+      {
+        message: "report email",
+      },
+      function (response) {
+        console.log(response);
 
-  chrome.tabs.query(
-      { active: true, currentWindow: true },
-      function (tabs) {
-        chrome.tabs.sendMessage(
-            tabs[0].id,
-            {
-              message: "report email",
-            },
-            function (response) {
-              console.log(response);
-
-              if (response) {
-                console.log('response received');
-                let getAllResponse = get_all_data();
-                getAllResponse.then((accounts) => {
-                  for(let account of accounts){
-                    if(account.email.split("@")[0] === response){
-                      postReport(account.website).then(r => {
-                        console.log(r);
-                      });
-                    }
-                  }
+        if (response) {
+          console.log("response received");
+          let getAllResponse = get_all_data();
+          getAllResponse.then((accounts) => {
+            for (let account of accounts) {
+              if (account.email.split("@")[0] === response) {
+                postReport(account.website).then((r) => {
+                  console.log(r);
                 });
               }
             }
-        );
+          });
+        }
       }
-  );
+    );
+  });
 }
 
 async function postReport(website) {
   console.log(website);
-  website = JSON.stringify({"report": { "website" : website }});
-  const response = await fetch('http://localhost:3000/reports', {
-    method: 'POST',
+  website = JSON.stringify({ report: { website: website } });
+  const response = await fetch("http://localhost:3000/reports", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: website
+    body: website,
   });
   return response;
 }
