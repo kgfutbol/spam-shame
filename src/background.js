@@ -322,9 +322,16 @@ function reportEmail() {
           getAllResponse.then((accounts) => {
             for (let account of accounts) {
               if (account.email === response) {
-                postReport(account.website).then((r) => {
-                  console.log(r);
-                });
+                // Check if user wants to report
+                const confirm = window.confirm(
+                  `${account.website} was the site you signed up for with this "dot email". Do you want to report them?`
+                );
+
+                if (confirm) {
+                  postReport(account.website).then((r) => {
+                    console.log(r);
+                  });
+                }
               }
             }
           });
