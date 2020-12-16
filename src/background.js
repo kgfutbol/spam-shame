@@ -1,4 +1,4 @@
-console.log("Background Execution");
+// Creates database wrapper for chrome.storage (local database)
 chrome.runtime.onInstalled.addListener(function (details) {
   chrome.storage.local.get(["email"], (res) => {
     if (!res.email) chrome.browserAction.setPopup({ popup: "../initial.html" });
@@ -54,21 +54,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-let exampleData = [
-  {
-    email: "k.evingermain@gmail.com",
-    website: "facebook",
-  },
-  {
-    email: "k.e.vingermain@gmail.com",
-    website: "twitter",
-  },
-  {
-    email: "k.ev.ingermain@gmail.com",
-    website: "amazon",
-  },
-];
-
 let db = null;
 
 function create_database() {
@@ -112,6 +97,7 @@ function delete_database() {
   };
 }
 
+// Inserts data into database
 function insert_data(data) {
   if (db) {
     const insert_transaction = db.transaction("user", "readwrite");
@@ -143,6 +129,7 @@ function insert_data(data) {
   }
 }
 
+// Returns all data from database
 function get_all_data() {
   if (db) {
     const get_transaction = db.transaction("user", "readonly");
@@ -167,6 +154,7 @@ function get_all_data() {
   }
 }
 
+// Gets specific data from database
 function get_data(email) {
   if (db) {
     const get_transaction = db.transaction("user", "readonly");
@@ -191,6 +179,7 @@ function get_data(email) {
   }
 }
 
+// Updates data in database
 function update_data(data) {
   if (db) {
     const put_transaction = db.transaction("user", "readwrite");
@@ -212,6 +201,7 @@ function update_data(data) {
   }
 }
 
+// Deletes data from database
 function delete_data(email) {
   if (db) {
     const delete_transaction = db.transaction("user", "readwrite");
@@ -237,7 +227,7 @@ create_database().then((DBOpen) => {
   //insert_data(exampleData);
 });
 
-//Creates context menu
+//Creates context menu (things users see when they right click)
 chrome.contextMenus.create({
   id: "InsertEmail",
   title: "Insert Email",
@@ -245,9 +235,8 @@ chrome.contextMenus.create({
   onclick: contextMenuClick,
 });
 
+// Executes when user tries to insert new "dot email"
 function contextMenuClick() {
-  console.log("menu clicked");
-
   // Check to see if the website has been reported
   // Get the current active tab so we can get url
   chrome.tabs.query(
@@ -256,6 +245,7 @@ function contextMenuClick() {
       currentWindow: true,
     },
     ([currentTab]) => {
+      // Make sure that the url hasn't been reported
       const url = new URL(currentTab.url).hostname;
 
       fetch("http://localhost:3000/reports")
@@ -271,6 +261,7 @@ function contextMenuClick() {
             if (!confirm) return;
           }
 
+          // Insert the new "dot email" into the page and increment to next "dot email"
           chrome.storage.local.get(["email"], (res) => {
             chrome.tabs.query(
               { active: true, currentWindow: true },
@@ -296,6 +287,7 @@ function contextMenuClick() {
   );
 }
 
+// Create a report button for when users right click
 chrome.contextMenus.create({
   id: "Report Email",
   title: "Report Email",
@@ -356,6 +348,7 @@ function reportEmail() {
   });
 }
 
+// Sends website to the reported database
 async function postReport(website) {
   const response = await fetch("http://localhost:3000/reports", {
     method: "POST",
@@ -367,15 +360,15 @@ async function postReport(website) {
   return response;
 }
 
+// Sets the next "dot email" that will be used
 function setNewDotEmail(newEmail) {
-  console.log("setting email");
   chrome.storage.local.set({ email: newEmail }, () => {});
 }
 
+// Generates the new "dot email"
+// Functions similar to how binary numbers increment
 function nextEmail() {
   chrome.storage.local.get(["email"], (result) => {
-    console.log(result);
-
     let splitEmail = result.email.split("@");
     let oldFront = splitEmail[0];
 

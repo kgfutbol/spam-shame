@@ -1,8 +1,12 @@
+// Injected into page so you can manipulate page DOM
+
 function replaceSelectedText(elem, email) {
   elem.value = email;
 }
 
+// Listens for events sent from other parts of extension
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  // Inserts email into page
   if (req.message === "insert email") {
     if (req.payload) {
       replaceSelectedText(document.activeElement, req.payload);
@@ -17,6 +21,8 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 
       sendResponse(profileInfo);
     }
+
+    // Gets the "to" field of the email for the report functionality
   } else if (req.message === "report email") {
     // Retrieves which "dot email" the email was sent to
     var header = document.getElementsByClassName("g2")[0].getAttribute("email");
@@ -27,6 +33,8 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 
       sendResponse(recipient);
     }
+
+    // Filters the "dot email" out by hijacking user session and adding setting
   } else if (req.message === "filter email") {
     const { email } = req;
     createFilter(email);
@@ -34,6 +42,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
   }
 });
 
+// Manipulates DOM to create a filter for the email
 function createFilter(email) {
   const labelName = "Spam Shame Spam";
 

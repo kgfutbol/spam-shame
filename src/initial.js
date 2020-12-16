@@ -1,5 +1,7 @@
 import dialogPolyfill from "./dialog-polyfill.esm.js";
 
+// Executes when the extension is first run
+// Makes user enter their gmail
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
   let dialogs = document.querySelectorAll("dialog");
