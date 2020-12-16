@@ -323,15 +323,20 @@ function reportEmail() {
             for (let account of accounts) {
               if (account.email === response) {
                 // Check if user wants to report
-                const confirm = window.confirm(
+                const confirmReport = window.confirm(
                   `${account.website} was the site you signed up for with this "dot email". Do you want to report them?`
                 );
 
-                if (confirm) {
+                if (confirmReport) {
                   postReport(account.website).then((r) => {
                     console.log(r);
                   });
                 }
+
+                // Check if user wants to filter our emails
+                const confirmFilter = window.confirm(
+                  `Do you want to filter all emails addressed to ${account.email} out of your inbox?`
+                );
               }
             }
           });
