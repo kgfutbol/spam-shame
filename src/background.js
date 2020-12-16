@@ -304,21 +304,24 @@ chrome.contextMenus.create({
 });
 
 function reportEmail() {
+  // Gets "dot email" the current email was sent to
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(
       tabs[0].id,
       {
         message: "report email",
       },
+      // Response holds the "dot email"
       function (response) {
         console.log(response);
 
         if (response) {
+          // Compares the "dot email" sent to with the ones in our records
           console.log("response received");
           let getAllResponse = get_all_data();
           getAllResponse.then((accounts) => {
             for (let account of accounts) {
-              if (account.email.split("@")[0] === response) {
+              if (account.email === response) {
                 postReport(account.website).then((r) => {
                   console.log(r);
                 });
@@ -332,14 +335,12 @@ function reportEmail() {
 }
 
 async function postReport(website) {
-  console.log(website);
-  website = JSON.stringify({ report: { website: website } });
   const response = await fetch("http://localhost:3000/reports", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: website,
+    body: JSON.stringify({ website }),
   });
   return response;
 }
