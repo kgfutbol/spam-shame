@@ -1,9 +1,8 @@
 /**
  * Gets the desired element on the client page and clicks on it
  */
-function createFilter() {
+function createFilter(email) {
   const labelName = "Spam Shame Spam";
-  const email = "oliver...@gmail.com";
 
   // Open settings
   document.getElementsByClassName("FH")[0].click();

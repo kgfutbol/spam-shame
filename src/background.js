@@ -338,9 +338,14 @@ function reportEmail() {
 
                 if (confirmFilter) {
                   // Executes code on page (hijacks user session)
-                  chrome.tabs.executeScript(tabs[0].id, {
-                    file: "src/filter.js",
-                  });
+                  chrome.tabs.sendMessage(
+                    tabs[0].id,
+                    {
+                      message: "filter email",
+                      email: account.email,
+                    },
+                    (response) => {}
+                  );
                 }
               }
             }
