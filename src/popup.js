@@ -1,4 +1,7 @@
+// Runs when icon button is clicked and the page is opened
+
 document.addEventListener("DOMContentLoaded", function () {
+  // Link buttons to respective html pages
   document
     .getElementById("btn-options")
     .addEventListener("click", onclickOptions, false);
