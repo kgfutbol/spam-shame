@@ -296,6 +296,58 @@ function contextMenuClick() {
   );
 }
 
+chrome.contextMenus.create({
+  id: "Report Email",
+  title: "Report Email",
+  contexts: ["all"],
+  onclick: reportEmail,
+});
+
+function reportEmail(){
+
+  chrome.tabs.query(
+      { active: true, currentWindow: true },
+      function (tabs) {
+        chrome.tabs.sendMessage(
+            tabs[0].id,
+            {
+              message: "report email",
+            },
+            function (response) {
+              console.log(response);
+
+              if (response) {
+                console.log('response received');
+                let getAllResponse = get_all_data();
+                getAllResponse.then((accounts) => {
+                  for(let account of accounts){
+                    if(account.email.split("@")[0] === response){
+                      postReport(account.website).then(r => {
+                        console.log(r);
+                      });
+                    }
+                  }
+                });
+              }
+            }
+        );
+      }
+  );
+}
+
+async function postReport(website) {
+  console.log(website);
+  website = JSON.stringify({"report": { "website" : website }});
+  const response = await fetch('http://localhost:3000/reports', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: website
+  });
+  return response;
+}
+
 function setNewDotEmail(newEmail) {
   console.log("setting email");
   chrome.storage.local.set({ email: newEmail }, () => {});

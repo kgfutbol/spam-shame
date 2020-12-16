@@ -3,9 +3,6 @@ function replaceSelectedText(elem, email) {
 }
 
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
-    console.log("Received Message");
-    console.log(req);
-    console.log(window.location.href);
     if (req.message === 'insert email') {
         if (req.payload) {
             replaceSelectedText(document.activeElement, req.payload);
@@ -20,5 +17,16 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 
             sendResponse(profileInfo);
         }
+    } else if (req.message === 'report email') {
+
+        var header = document.getElementsByClassName("g2")[0].innerText;
+        if (header) {
+            let recipient = header;
+            console.log(recipient);
+
+            sendResponse(recipient);
+        }
+
     }
 });
+
